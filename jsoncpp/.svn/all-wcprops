@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/jsoncpp/!svn/ver/88/trunk/jsoncpp/include/json
+END
+json.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/jsoncpp/!svn/ver/76/trunk/jsoncpp/include/json/json.h
+END
+value.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/jsoncpp/!svn/ver/88/trunk/jsoncpp/include/json/value.h
+END
+writer.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/jsoncpp/!svn/ver/49/trunk/jsoncpp/include/json/writer.h
+END
+features.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/jsoncpp/!svn/ver/76/trunk/jsoncpp/include/json/features.h
+END
+reader.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/jsoncpp/!svn/ver/76/trunk/jsoncpp/include/json/reader.h
+END
+config.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/jsoncpp/!svn/ver/85/trunk/jsoncpp/include/json/config.h
+END
+autolink.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/jsoncpp/!svn/ver/47/trunk/jsoncpp/include/json/autolink.h
+END
+forwards.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/jsoncpp/!svn/ver/76/trunk/jsoncpp/include/json/forwards.h
+END

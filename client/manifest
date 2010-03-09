@@ -1,0 +1,18 @@
+CACHE MANIFEST
+#/ofMarSongBrowser/index.html
+
+# css
+css/graphael.css
+css/graphael-print.css
+
+# js
+js/g.bar-min.js
+js/g.dot-min.js
+js/g.line-min.js
+js/g.pie-min.js
+js/g.pie.js
+js/g.raphael-min.js
+js/raphael.min.js
+
+#NETWORK:
+

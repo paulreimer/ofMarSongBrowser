@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  manifest="./manifest">
+  <head> 
+    <title>ofMarSongBrowser</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <meta name="author" content="Paul Reimer"> 
+    <meta name="description" content="HTML5 (WebSockets, Database, Audio, SVG)-based Song Similarity Browser"> 
+
+    <script type="text/javascript" charset="utf-8"> 
+      var div;
+      var schema;
+    </script>
+
+    <script src="js/JSON.min.js" type="text/javascript"></script>
+    <script src="js/prettyprint.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="schema.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8"> 
+      String.prototype.endsWith = function(str)
+      {
+        var lastIndex = this.lastIndexOf(str);
+        return (lastIndex != -1) && (lastIndex + str.length == this.length);
+      }
+
+      var ws_connect = function()
+      {
+        var uri = document.getElementById("ws_uri").value;
+        var ws = new WebSocket(uri);
+
+        div = document.getElementById('content_div');
+
+        ws.onopen = function()
+        {
+          div.innerHTML += "Connected.<br/>";
+          // Web Socket is connected.
+          ws.send("message to send");
+        };
+        ws.onmessage = function (evt)
+        {
+          if (uri.endsWith("json"))
+            new_song = JSON.parse(evt.data);
+          else
+            return;
+          
+         var pretty_print_song = prettyPrint(new_song);
+         div.appendChild(pretty_print_song, div.firstChild);
+        };
+        ws.onclose = function()
+        {
+          div.innerHTML += "closed.<br/>";
+          // websocket is closed.
+        };
+      }
+
+      var init_db = function(db)
+      {
+        db.transaction(function(tx) {
+          tx.executeSql(schema, 
+            [], 
+            function (tx, rs)   { console.log("Schema created!");  }, 
+            function (tx, err)  { console.log("Schema error!"); });
+        });
+      }
+
+      var insert_song = function(song)
+      {
+        db.transaction(function(tx) {
+          tx.executeSql(schema, 
+            [], 
+            function (tx, rs)   { console.log("Schema created!");  }, 
+            function (tx, err)  { console.log("Schema error!"); });
+        });
+      }
+
+      window.onload = function () {
+        if ("openDatabase" in window)
+        {
+          var db = window.openDatabase("ofMarSongBrowser", "", "ofMarSongBrowser_db", 1024*1024);
+          console.log(db);
+          init_db(db);
+        }
+        else
+          console.log("Lacking in Database support.");
+
+        if ("WebSocket" in window)
+          document.getElementById("connect").onclick = ws_connect;
+        else
+          console.log("Lacking in WebSocket support.");
+      }
+    </script> 
+  </head> 
+  <body> 
+    <div id="connection">
+      <input id="ws_uri" type="text" value="ws://beeswax.local:9000/songs.json" size="44">
+      <button id="connect">Connect</button>
+    </div>
+    <div id="content_div" style="height: 50px;"></div>
+  </body> 
+</html> 
